@@ -1,4 +1,4 @@
-name: Xavia-Bot
+name: Node.js CI
 
 on:
   push:
@@ -11,16 +11,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: '16'
+          node-version: 20.18.1
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Xavia Bot
-        run: npm start
+      - name: Run build/test
+        run: npm run build || npm test
