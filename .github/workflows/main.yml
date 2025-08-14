@@ -1,13 +1,12 @@
-name: Node.js CI
+name: Xavia Bot
 
 on:
+  workflow_dispatch: # ম্যানুয়ালি রান করতে পারবেন
   push:
-    branches: [ main ]
-  pull_request:
     branches: [ main ]
 
 jobs:
-  install:
+  run-bot:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,3 +21,6 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+
+      - name: Start Xavia Bot
+        run: npm start
